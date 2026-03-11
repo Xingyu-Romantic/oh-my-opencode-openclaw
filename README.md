@@ -51,7 +51,7 @@ python3 omo.py list-categories
 
 ```python
 import sys
-sys.path.insert(0, '/path/to/oh-my-opencode-openclaw')
+sys.path.insert(0, './oh-my-opencode-openclaw')
 from omo import OMOSystem
 
 omo = OMOSystem()
