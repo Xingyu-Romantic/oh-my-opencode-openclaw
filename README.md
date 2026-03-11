@@ -6,7 +6,6 @@
 
 [![GitHub stars](https://img.shields.io/github/stars/Xingyu-Romantic/oh-my-opencode-openclaw?style=flat-square)](https://github.com/Xingyu-Romantic/oh-my-opencode-openclaw/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/Xingyu-Romantic/oh-my-opencode-openclaw?style=flat-square)](https://github.com/Xingyu-Romantic/oh-my-opencode-openclaw/network)
-[![GitHub issues](https://img.shields.io/github/issues/Xingyu-Romantic/oh-my-opencode-openclaw?style=flat-square)](https://github.com/Xingyu-Romantic/oh-my-opencode-openclaw/issues)
 [![License](https://img.shields.io/github/license/Xingyu-Romantic/oh-my-opencode-openclaw?style=flat-square)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.8+-blue?style=flat-square)](https://www.python.org/)
 
@@ -18,23 +17,53 @@
 - 📚 **Wisdom Accumulation** - 经验累积，跨任务学习
 - ⚡ **Parallel Execution** - 并行执行，提高效率
 
-## 快速开始
+## 🚀 快速开始
 
-### 安装
+### 方式一：克隆使用
 
 ```bash
 # 克隆仓库
 git clone https://github.com/Xingyu-Romantic/oh-my-opencode-openclaw.git
 cd oh-my-opencode-openclaw
 
-# 安装依赖 (可选)
-pip install pyyaml
+# 安装依赖
+pip install -r requirements.txt
+
+# 直接运行
+python3 omo.py route "实现用户登录"
+python3 omo.py list-agents
 ```
 
-### 使用方法
+### 方式二：作为 OpenClaw Skill 使用
 
 ```bash
-# 路由任务
+# 复制 skill 目录到 OpenClaw
+cp -r skill/ ~/.openclaw/workspace/skills/omo
+```
+
+然后在 OpenClaw 中就可以直接使用 OMO 功能了！
+
+### 方式三：作为 MCP 使用
+
+在 OpenClaw 的 MCP 配置中添加：
+
+```json
+{
+  "mcpServers": {
+    "omo": {
+      "command": "python3",
+      "args": ["path/to/oh-my-opencode-openclaw/omo_mcp.py"]
+    }
+  }
+}
+```
+
+## 📖 使用方法
+
+### 命令行
+
+```bash
+# 路由任务（自动意图分析）
 python3 omo.py route "实现用户登录"
 
 # 意图分析
@@ -45,13 +74,14 @@ python3 omo.py list-agents
 
 # 列出所有 categories
 python3 omo.py list-categories
+
+# 获取 agent prompt
+python3 omo.py prompt sisyphus
 ```
 
 ### Python API
 
 ```python
-import sys
-sys.path.insert(0, './oh-my-opencode-openclaw')
 from omo import OMOSystem
 
 omo = OMOSystem()
@@ -74,11 +104,8 @@ print(result)
 | atlas | 执行统筹 | 执行计划、分发任务 |
 | hephaestus | 深度工程师 | 自主研究+执行 |
 | oracle | 架构顾问 | 架构咨询 |
-| metis | 差距分析器 | 计划审核 |
-| momus | 审核员 | 计划审核 |
 | explore | 代码探索者 | 快速 grep |
 | librarian | 文档管理员 | 文档搜索 |
-| multimodal_looker | 视觉分析师 | 截图分析 |
 
 ## Category 路由
 
@@ -87,25 +114,9 @@ print(result)
 | visual-engineering | 前端/UI |
 | ultrabrain | 深度推理 |
 | deep | 复杂编码 |
-| artistry | 创意任务 |
 | quick | 简单快速任务 |
 | unspecified-high | 通用复杂 |
 | unspecified-low | 通用标准 |
-| writing | 写作文档 |
-
-## 工作流
-
-### Ultrawork 模式
-```
-ultrawork 或 ulw
-```
-自动分析、执行、验证，直到完成。
-
-### Prometheus 模式
-```
-@plan "任务描述"
-```
-访谈式规划，然后执行。
 
 ## 目录结构
 
@@ -113,6 +124,7 @@ ultrawork 或 ulw
 oh-my-opencode-openclaw/
 ├── omo.py                 # 统一入口
 ├── omo_mcp.py             # MCP 服务器
+├── omo_cli.py             # CLI 工具
 ├── tools.sh               # Shell 工具封装
 ├── agents.yaml            # Agent 角色定义
 ├── categories.yaml        # Category 路由配置
@@ -120,6 +132,7 @@ oh-my-opencode-openclaw/
 ├── todo_enforcer.py       # 强制完成
 ├── wisdom_accumulator.py  # 经验累积
 ├── parallel_scheduler.py  # 并行调度
+├── requirements.txt       # Python 依赖
 ├── prompts/               # Agent prompt 模板
 ├── skill/                 # OpenClaw Skill
 │   ├── SKILL.md
@@ -127,24 +140,6 @@ oh-my-opencode-openclaw/
 │   └── mcp.json
 └── README.md
 ```
-
-## 集成到 OpenClaw
-
-### 作为 Skill 使用
-
-将 `skill/` 目录复制到 OpenClaw 的 skills 目录：
-
-```bash
-cp -r skill/ ~/.openclaw/workspace/skills/omo
-```
-
-### 作为 MCP 使用
-
-配置 `mcp.json` 到 OpenClaw 的 MCP 配置中。
-
-## 贡献
-
-欢迎提交 Issue 和 Pull Request！
 
 ## ⭐ Star 历史
 
