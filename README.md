@@ -10,23 +10,6 @@
 [![License](https://img.shields.io/github/license/Xingyu-Romantic/oh-my-opencode-openclaw?style=flat-square)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.8+-blue?style=flat-square)](https://www.python.org/)
 
-## ⭐ Stars 增长趋势
-
-```
-stars
-   ^
- 10 |                    ╭──╮
-  9 |               ╭───╯  ╰───╮
-  8 |          ╭───╯              ╰───╮
-  7 |     ╭───╯                      ╰───
-  6 |  ╭─╯
-  5 |─╯
-   +--------------------------------→ time
-     Jan  Feb  Mar  Apr  May  Jun
-```
-
-> 📊 目标：让 OMO 成为 OpenClaw 生态的核心编排系统！
-
 ## 功能
 
 - 🎯 **Intent Gate** - 意图分析，自动识别 8 种意图类型
@@ -163,7 +146,7 @@ cp -r skill/ ~/.openclaw/workspace/skills/omo
 
 欢迎提交 Issue 和 Pull Request！
 
-## Star 历史
+## ⭐ Star 历史
 
 [![Star History Chart](https://api.star-history.com/svg?repos=Xingyu-Romantic/oh-my-opencode-openclaw&type=Date)](https://star-history.com/#Xingyu-Romantic/oh-my-opencode-openclaw)
 
