@@ -4,8 +4,7 @@
       "command": "python3",
       "args": ["omo_mcp.py"],
       "env": {},
-      "description": "OMO - Multi-Agent Orchestration System",
-      "comment": "如果运行在 OpenClaw 环境中，请将 args 改为绝对路径，如: ./omo_mcp.py"
+      "description": "OMO - Multi-Agent Orchestration System"
     }
   },
   "tools": {

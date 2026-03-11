@@ -1,0 +1,155 @@
+# Oh My OpenCode Style Agent Orchestration System
+# 参考: https://github.com/code-yeongyu/oh-my-openagent
+
+# ============================================
+# Agent 角色定义
+# ============================================
+
+agents:
+  # Sisyphus - 主 orchestrator
+  # 职责: 规划、调度、统筹全局
+  # 推荐模型: Claude / Kimi / GLM
+  sisyphus:
+    role: "主协调器"
+    description: "Sisyphus 是主 orchestrator。他规划、委托给专家、并通过激进的并行执行驱动任务完成。他不会半途而废，不会分心，直到完成。"
+    model: "xiaomi/MiniMax-M2.5"
+    can_delegate: true
+    can_create_plan: true
+    tools:
+      - task  # 委托任务给其他 agent
+      - read
+      - grep
+      - glob
+      - bash
+      - lsp_*
+    fallback_models:
+      - xiaomi/mimo-claw-0301
+      - xiaomi/MiniMax-M2.5
+
+  # Hephaestus - 深度工人
+  # 职责: 自主研究 + 执行
+  # 推荐模型: GPT-5.3 Codex
+  hephaestus:
+    role: "深度工程师"
+    description: "Hephaestus 是自主深度工人。给他目标，而不是步骤。他探索代码库、研究模式、端到端执行，无需手把手指导。"
+    model: "xiaomi/MiniMax-M2.5"
+    can_delegate: false
+    can_create_plan: false
+    tools:
+      - read
+      - grep
+      - glob
+      - edit
+      - write
+      - bash
+      - lsp_*
+
+  # Prometheus - 战略规划师
+  # 职责: 访谈式规划
+  # 推荐模型: Claude / Kimi
+  prometheus:
+    role: "战略规划师"
+    description: "Prometheus 像真正的工程师一样访谈你。问澄清问题，识别范围和歧义，在写任何代码之前构建详细计划。"
+    model: "xiaomi/MiniMax-M2.5"
+    can_delegate: true
+    can_create_plan: true
+    mode: "interview"  # 访谈模式
+    tools:
+      - read
+      - grep
+      - glob
+      - write  # 只允许写 .omo/plans/ 目录
+
+  # Atlas - 执行统筹
+  # 职责: 执行计划，分发任务给 subagents
+  # 推荐模型: Claude Sonnet
+  atlas:
+    role: "执行统筹"
+    description: "Atlas 执行 Prometheus 的计划。将任务分发给专业 subagents。跨任务累积学习。独立验证完成度。"
+    model: "xiaomi/MiniMax-M2.5"
+    can_delegate: true
+    can_create_plan: false
+    tools:
+      - task
+      - read
+      - grep
+      - glob
+      - bash
+      - lsp_diagnostics
+
+  # Oracle - 架构顾问
+  # 职责: 架构决策咨询
+  # 推荐模型: GPT / Claude Opus
+  oracle:
+    role: "架构顾问"
+    description: "只读高智商顾问，用于架构决策和复杂调试。咨询 Oracle 面对不熟悉的模式、安全问题或多系统权衡时。"
+    model: "xiaomi/MiniMax-M2.5"
+    can_delegate: false
+    can_create_plan: false
+    readonly: true
+    tools:
+      - read
+      - grep
+      - glob
+
+  # Metis - 差距分析器
+  # 职责: 计划审核，查漏补缺
+  metis:
+    role: "差距分析器"
+    description: "在 Prometheus 写计划之前，Metis 捕捉 Prometheus 遗漏的东西：用户请求中的隐藏意图、可能破坏实现的歧义、AI-slop 模式、缺失的验收标准。"
+    model: "xiaomi/MiniMax-M2.5"
+    can_delegate: false
+    tools:
+      - read
+      - grep
+      - glob
+
+  # Momus - 严格审核员
+  # 职责: 计划审核
+  # 推荐模型: GPT-5.4
+  momus:
+    role: "严格审核员"
+    description: "高准确度模式下，Momus 根据四个核心标准验证计划：1. Clarity 2. Verification 3. Context 4. Big Picture"
+    model: "xiaomi/MiniMax-M2.5"
+    can_delegate: false
+    tools:
+      - read
+      - grep
+
+  # Explore - 快速 grep
+  # 职责: 代码库快速探索
+  # 推荐模型: Grok Code / MiniMax
+  explore:
+    role: "代码探索者"
+    description: "快速代码库 grep。使用速度优先的模型进行模式发现。"
+    model: "xiaomi/MiniMax-M2.5"
+    can_delegate: false
+    tools:
+      - grep
+      - glob
+      - read
+
+  # Librarian - 文档搜索
+  # 职责: 文档和 OSS 代码搜索
+  # 推荐模型: Gemini Flash
+  librarian:
+    role: "文档管理员"
+    description: "文档和 OSS 代码搜索。保持对库 API 和最佳实践的最新了解。"
+    model: "xiaomi/MiniMax-M2.5"
+    can_delegate: false
+    tools:
+      - grep
+      - glob
+      - read
+      - web_search
+
+  # Multimodal-Looker - 视觉分析
+  # 职责: 截图和视觉分析
+  multimodal_looker:
+    role: "视觉分析师"
+    description: "视觉和截图分析。"
+    model: "xiaomi/MiniMax-M2.5"
+    can_delegate: false
+    tools:
+      - read
+      - describe_image

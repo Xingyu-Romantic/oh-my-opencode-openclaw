@@ -1,0 +1,85 @@
+# ============================================
+# Category 路由系统
+# ============================================
+# 当 Sisyphus 委托工作时，不选模型名，而是选 category
+# Category 自动映射到正确的模型
+
+categories:
+  # 前端/UI/UX - Gemini 最强
+  visual-engineering:
+    description: "前端、UI/UX、设计、样式、动画"
+    default_model: "xiaomi/MiniMax-M2.5"
+    fallback_chain:
+      - xiaomi/MiniMax-M2.5
+      - xiaomi/mimo-claw-0301
+    agents:
+      - hephaestus
+      - explore
+
+  # 深度推理 - 需要最强模型
+  ultrabrain:
+    description: "深度逻辑推理、复杂架构决策"
+    default_model: "xiaomi/mimo-claw-0301"
+    fallback_chain:
+      - xiaomi/mimo-claw-0301
+      - xiaomi/MiniMax-M2.5
+    agents:
+      - hephaestus
+      - oracle
+
+  # 深度编码
+  deep:
+    description: "自主研究 + 执行、复杂逻辑"
+    default_model: "xiaomi/MiniMax-M2.5"
+    fallback_chain:
+      - xiaomi/MiniMax-M2.5
+      - xiaomi/mimo-claw-0301
+    agents:
+      - hephaestus
+
+  # 艺术/创意
+  artistry:
+    description: "高度创意或艺术任务、新想法"
+    default_model: "xiaomi/MiniMax-M2.5"
+    fallback_chain:
+      - xiaomi/MiniMax-M2.5
+    agents:
+      - hephaestus
+
+  # 快速任务 - 用最便宜的模型
+  quick:
+    description: "简单快速的任务，单文件修改"
+    default_model: "xiaomi/MiniMax-M2.5"
+    fallback_chain:
+      - xiaomi/MiniMax-M2.5
+    agents:
+      - explore
+
+  # 通用高强度工作
+  unspecified-high:
+    description: "通用复杂工作"
+    default_model: "xiaomi/MiniMax-M2.5"
+    fallback_chain:
+      - xiaomi/MiniMax-M2.5
+      - xiaomi/mimo-claw-0301
+    agents:
+      - sisyphus
+      - hephaestus
+
+  # 通用标准工作
+  unspecified-low:
+    description: "通用标准工作"
+    default_model: "xiaomi/MiniMax-M2.5"
+    fallback_chain:
+      - xiaomi/MiniMax-M2.5
+    agents:
+      - explore
+
+  # 写作/文档
+  writing:
+    description: "文本、文档、散文"
+    default_model: "xiaomi/MiniMax-M2.5"
+    fallback_chain:
+      - xiaomi/MiniMax-M2.5
+    agents:
+      - librarian

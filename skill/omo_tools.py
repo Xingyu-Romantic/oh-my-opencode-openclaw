@@ -7,9 +7,10 @@ OMO Tools for OpenClaw
 import json
 import sys
 import os
+from pathlib import Path
 
-# 添加 OMO 路径
-OMO_PATH = "."
+# 添加当前目录到路径
+OMO_PATH = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, OMO_PATH)
 
 from omo import OMOSystem
@@ -61,15 +62,7 @@ def list_categories() -> list:
     return omo.list_categories()
 
 def get_agent_prompt(agent: str) -> str:
-    """
-    获取 agent 的系统 prompt
-    
-    Args:
-        agent: agent 名称
-        
-    Returns:
-        str: 系统 prompt
-    """
+    """获取 agent 的系统 prompt"""
     omo = get_omo()
     return omo.generate_system_prompt(agent)
 

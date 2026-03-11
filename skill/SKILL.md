@@ -16,28 +16,43 @@ metadata:
 
 ## 功能
 
-### 1. 意图分析 (Intent Gate)
-自动分析用户输入的真实意图，识别 8 种意图类型并路由到合适的 Agent。
+- 🎯 **Intent Gate** - 意图分析，自动识别 8 种意图类型
+- 📍 **Task Routing** - 任务路由，自动选择合适的 Agent 和 Category
+- ✅ **Todo Enforcer** - 强制完成，确保任务不被遗漏
+- 📚 **Wisdom Accumulation** - 经验累积，跨任务学习
+- ⚡ **Parallel Execution** - 并行执行，提高效率
 
-### 2. 任务路由 (Task Routing)
-根据意图自动选择合适的 Category 和 Agent。
+## 安装
 
-### 3. Todo 强制完成 (Todo Enforcer)
-确保所有任务都被完成，Agent 不能摸鱼。
+```bash
+# 安装依赖
+pip install pyyaml
 
-### 4. 经验累积 (Wisdom Accumulation)
-跨任务累积学习，传递给下一个任务。
+# 或复制整个 skill 目录到 OpenClaw
+cp -r . ~/.openclaw/workspace/skills/omo
+```
 
-### 5. 并行执行 (Parallel Execution)
-同时运行多个任务，提高效率。
+## 使用方法
 
-## 工具调用
+### 命令行
 
-### 1. Python 直接调用
+```bash
+# 路由任务
+python3 omo_tools.py route "实现用户登录"
+
+# 意图分析
+python3 omo_tools.py intent "修复这个bug"
+
+# 列出所有 agents
+python3 omo_tools.py list-agents
+
+# 列出所有 categories
+python3 omo_tools.py list-categories
+```
+
+### Python API
 
 ```python
-import sys
-sys.path.insert(0, '.')
 from omo_tools import route_task, analyze_intent, list_agents
 
 # 路由任务
@@ -61,39 +76,14 @@ intent = analyze_intent("修复这个bug")
 agents = list_agents()
 ```
 
-### 2. Shell 命令调用
+### MCP 协议
 
 ```bash
-# 路由任务
-python3 ./omo_tools.py route "实现用户登录"
-
-# 意图分析
-python3 ./omo_tools.py intent "修复这个bug"
-
-# 列出所有 agents
-python3 ./omo_tools.py list-agents
-
-# 列出所有 categories
-python3 ./omo_tools.py list-categories
-
-# 获取 agent prompt
-python3 ./omo_tools.py prompt sisyphus
+echo '{"method": "route_task", "params": {"prompt": "任务"}}' | python3 omo_mcp.py
+echo '{"method": "list_agents", "params": {}}' | python3 omo_mcp.py
 ```
 
-### 3. MCP 协议调用
-
-```bash
-# 路由任务
-echo '{"method": "route_task", "params": {"prompt": "任务"}}' | python3 ../omo_mcp.py
-
-# 意图分析
-echo '{"method": "analyze_intent", "params": {"prompt": "任务"}}' | python3 ../omo_mcp.py
-
-# 列出 agents
-echo '{"method": "list_agents", "params": {}}' | python3 ../omo_mcp.py
-```
-
-## Agent 角色 (10个)
+## Agent 角色
 
 | Agent | 角色 | 职责 |
 |-------|------|------|
@@ -102,24 +92,19 @@ echo '{"method": "list_agents", "params": {}}' | python3 ../omo_mcp.py
 | atlas | 执行统筹 | 执行计划、分发任务 |
 | hephaestus | 深度工程师 | 自主研究+执行 |
 | oracle | 架构顾问 | 架构咨询 |
-| metis | 差距分析器 | 计划审核 |
-| momus | 审核员 | 计划审核 |
 | explore | 代码探索者 | 快速 grep |
 | librarian | 文档管理员 | 文档搜索 |
-| multimodal_looker | 视觉分析师 | 截图分析 |
 
-## Category 路由 (8种)
+## Category 路由
 
 | Category | 用途 |
 |----------|------|
 | visual-engineering | 前端/UI |
 | ultrabrain | 深度推理 |
 | deep | 复杂编码 |
-| artistry | 创意任务 |
 | quick | 简单快速任务 |
 | unspecified-high | 通用复杂 |
 | unspecified-low | 通用标准 |
-| writing | 写作文档 |
 
 ## 路由示例
 
@@ -132,9 +117,33 @@ echo '{"method": "list_agents", "params": {}}' | python3 ../omo_mcp.py
 | 研究这个库 | research | librarian | unspecified-low |
 | 改个typo | quick | explore | quick |
 
-## 文件位置
+## 目录结构
 
-- Skill: `./`
-- OMO 核心: `../`
-- 工具封装: `./omo_tools.py`
-- MCP 服务: `../omo_mcp.py`
+```
+skill/
+├── SKILL.md          # Skill 文档
+├── omo_tools.py      # 工具封装
+├── omo.py            # 主入口
+├── omo_mcp.py        # MCP 服务器
+├── omo_cli.py        # CLI 工具
+├── intent_gate.py    # 意图分析
+├── todo_enforcer.py  # 强制完成
+├── wisdom_accumulator.py  # 经验累积
+├── parallel_scheduler.py  # 并行调度
+├── agents.yaml       # Agent 角色定义
+├── categories.yaml   # Category 路由配置
+├── requirements.txt  # Python 依赖
+└── prompts/          # Agent prompt 模板
+```
+
+## 直接运行
+
+```bash
+# 安装依赖
+pip install pyyaml
+
+# 运行
+python3 omo.py route "你的任务"
+python3 omo.py list-agents
+python3 omo.py intent "任务描述"
+```
