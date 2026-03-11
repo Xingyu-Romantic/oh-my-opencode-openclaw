@@ -37,7 +37,7 @@ metadata:
 
 ```python
 import sys
-sys.path.insert(0, '/home/mi/.openclaw/workspace/skills/omo')
+sys.path.insert(0, '.')
 from omo_tools import route_task, analyze_intent, list_agents
 
 # 路由任务
@@ -65,32 +65,32 @@ agents = list_agents()
 
 ```bash
 # 路由任务
-python3 /home/mi/.openclaw/workspace/skills/omo/omo_tools.py route "实现用户登录"
+python3 ./omo_tools.py route "实现用户登录"
 
 # 意图分析
-python3 /home/mi/.openclaw/workspace/skills/omo/omo_tools.py intent "修复这个bug"
+python3 ./omo_tools.py intent "修复这个bug"
 
 # 列出所有 agents
-python3 /home/mi/.openclaw/workspace/skills/omo/omo_tools.py list-agents
+python3 ./omo_tools.py list-agents
 
 # 列出所有 categories
-python3 /home/mi/.openclaw/workspace/skills/omo/omo_tools.py list-categories
+python3 ./omo_tools.py list-categories
 
 # 获取 agent prompt
-python3 /home/mi/.openclaw/workspace/skills/omo/omo_tools.py prompt sisyphus
+python3 ./omo_tools.py prompt sisyphus
 ```
 
 ### 3. MCP 协议调用
 
 ```bash
 # 路由任务
-echo '{"method": "route_task", "params": {"prompt": "任务"}}' | python3 /home/mi/.openclaw/workspace/omo-system/omo_mcp.py
+echo '{"method": "route_task", "params": {"prompt": "任务"}}' | python3 ../omo_mcp.py
 
 # 意图分析
-echo '{"method": "analyze_intent", "params": {"prompt": "任务"}}' | python3 /home/mi/.openclaw/workspace/omo-system/omo_mcp.py
+echo '{"method": "analyze_intent", "params": {"prompt": "任务"}}' | python3 ../omo_mcp.py
 
 # 列出 agents
-echo '{"method": "list_agents", "params": {}}' | python3 /home/mi/.openclaw/workspace/omo-system/omo_mcp.py
+echo '{"method": "list_agents", "params": {}}' | python3 ../omo_mcp.py
 ```
 
 ## Agent 角色 (10个)
@@ -134,7 +134,7 @@ echo '{"method": "list_agents", "params": {}}' | python3 /home/mi/.openclaw/work
 
 ## 文件位置
 
-- Skill: `/home/mi/.openclaw/workspace/skills/omo/`
-- OMO 核心: `/home/mi/.openclaw/workspace/omo-system/`
-- 工具封装: `/home/mi/.openclaw/workspace/skills/omo/omo_tools.py`
-- MCP 服务: `/home/mi/.openclaw/workspace/omo-system/omo_mcp.py`
+- Skill: `./`
+- OMO 核心: `../`
+- 工具封装: `./omo_tools.py`
+- MCP 服务: `../omo_mcp.py`

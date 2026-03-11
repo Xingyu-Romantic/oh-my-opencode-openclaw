@@ -5,7 +5,7 @@
       "args": ["omo_mcp.py"],
       "env": {},
       "description": "OMO - Multi-Agent Orchestration System",
-      "comment": "如果运行在 OpenClaw 环境中，请将 args 改为绝对路径，如: /home/username/path/to/oh-my-opencode-openclaw/omo_mcp.py"
+      "comment": "如果运行在 OpenClaw 环境中，请将 args 改为绝对路径，如: ./omo_mcp.py"
     }
   },
   "tools": {

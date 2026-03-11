@@ -1,7 +1,7 @@
 #!/bin/bash
 # OMO 工具封装 - 让 OpenClaw 可以通过 shell 调用
 
-OMO_DIR="/home/mi/.openclaw/workspace/omo-system"
+OMO_DIR="."
 OMO_PY="$OMO_DIR/omo.py"
 OMO_MCP="$OMO_DIR/omo_mcp.py"
 

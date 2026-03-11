@@ -9,7 +9,7 @@ import sys
 import os
 
 # 添加 OMO 路径
-OMO_PATH = "/home/mi/.openclaw/workspace/omo-system"
+OMO_PATH = "."
 sys.path.insert(0, OMO_PATH)
 
 from omo import OMOSystem
