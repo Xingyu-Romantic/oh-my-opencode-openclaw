@@ -1,0 +1,65 @@
+{
+  "mcpServers": {
+    "omo": {
+      "command": "python3",
+      "args": ["/home/mi/.openclaw/workspace/omo-system/omo_mcp.py"],
+      "env": {},
+      "description": "OMO - Multi-Agent Orchestration System"
+    }
+  },
+  "tools": {
+    "omo_route_task": {
+      "description": "Route a task through OMO intent analysis",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "prompt": {
+            "type": "string",
+            "description": "The task prompt to route"
+          }
+        },
+        "required": ["prompt"]
+      }
+    },
+    "omo_analyze_intent": {
+      "description": "Analyze user intent",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "prompt": {
+            "type": "string",
+            "description": "The prompt to analyze"
+          }
+        },
+        "required": ["prompt"]
+      }
+    },
+    "omo_list_agents": {
+      "description": "List all OMO agents",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    "omo_list_categories": {
+      "description": "List all OMO categories",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    "omo_get_agent_prompt": {
+      "description": "Get system prompt for an agent",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "agent": {
+            "type": "string",
+            "description": "Agent name (sisyphus, prometheus, atlas, hephaestus, etc.)"
+          }
+        },
+        "required": ["agent"]
+      }
+    }
+  }
+}

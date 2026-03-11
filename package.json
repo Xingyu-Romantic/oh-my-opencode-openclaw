@@ -1,0 +1,28 @@
+{
+  "name": "oh-my-opencode-openclaw",
+  "version": "1.0.0",
+  "description": "Multi-Agent Orchestration System for OpenClaw",
+  "main": "omo.py",
+  "scripts": {
+    "test": "python3 omo.py status",
+    "route": "python3 omo.py route",
+    "intent": "python3 omo.py intent"
+  },
+  "keywords": [
+    "openclaw",
+    "omo",
+    "multi-agent",
+    "orchestration",
+    "ai",
+    "coding"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/oh-my-opencode-openclaw.git"
+  },
+  "dependencies": {
+    "pyyaml": ">=6.0"
+  }
+}
